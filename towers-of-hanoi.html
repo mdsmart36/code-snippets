@@ -1,0 +1,38 @@
+<html>
+
+<head>
+	<title>Towers of Hanoi</title>
+</head>
+
+<body>
+	<h1>Towers of Hanoi -- solution using recursive Javascript</h1>
+	<script language="JavaScript" type="text/javascript">
+		 
+		// This program illustrates how a very short program could take 
+		// an extremely long time to run. The program prints out all the moves 
+		// that are required to move N disks from one peg to another peg in the 
+		// game of the Towers of Hanoi (http://en.wikipedia.org/wiki/Tower_of_Hanoi) 
+		// The function moveNDisks is given a number in the variable N, which is the 
+		// number of disks to move. It is also given the names of the 3 pegs it must 
+		// use. The goal of the function is to move the N disks from the "fromPeg"  
+		// and put them on the "toPeg" using the "extraPeg" as a temporary peg. 
+		
+		function moveNDisks( N, fromPeg, toPeg, extraPeg ) { 
+			// BASE CASE: if there's only one disk to move, then just print the move required 
+			if ( N === 1 ) 
+				document.write( "Move disk from Peg " + fromPeg + " to " + toPeg + "<br>" );
+			else { 
+				// otherwise, then call the function to move N-1 disks out of the way... 
+				moveNDisks( N-1, fromPeg, extraPeg, toPeg ); 
+				// then move 1 disk to the destination 
+				moveNDisks( 1, fromPeg, toPeg, extraPeg ); 
+				// and the N-1 that were out of the way should be brought back 
+				moveNDisks( N-1, extraPeg, toPeg, fromPeg ); 
+			} 
+		}  
+				// now, let's try a test case with 5 disks 
+		moveNDisks( 3, "A", "B", "C" );
+	</script>
+</body>
+
+</html>
